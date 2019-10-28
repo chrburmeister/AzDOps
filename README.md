@@ -26,4 +26,4 @@ Get-Command -Module AzDOps
 ## Contribute
 This Module is by far not complete - there are still a lot of functions missing - feel free to contribute (I even encourage you to do so :) ). If you do, please have a look at some of the existing function to get an understanding of the sctructure.
 
-You can also just hit me up on Twitter [@_burbert](https://twitter.com/_burbert)
+You can also just hit me up on Twitter [@chrburmeister](https://twitter.com/chrburmeister)
