@@ -14,22 +14,18 @@ Function Disconnect-AzDo {
     [CmdletBinding()]
     param()
 
-    try {
-        Remove-Variable -Name AzDOpsModuleAuthHeader -Scope Global -Force -ErrorAction Stop
-    }
-    catch {
-        Write-Error "$_"
-    }
-    try {
-        Remove-Variable -Name AzDOpsModuleConnectionStatus -Scope Global -Force -ErrorAction Stop
-    }
-    catch {
-        Write-Error "$_"
-    }
-    try {
-        Remove-Variable -Name AzDOpsModuleBaseUrl -Scope Global -Force -ErrorAction Stop
-    }
-    catch {
-        Write-Error "$_"
+    $VariableArray = @(
+        "AzDOpsModuleAuthHeader"
+        "AzDOpsModuleConnectionStatus"
+        "AzDOpsModuleBaseUrl"
+    )
+
+    foreach ($item in $VariableArray) {
+        try {
+            Remove-Variable -Name $item -Scope Global -Force -ErrorAction Stop
+        }
+        catch {
+            Write-Error "$_"
+        }
     }
 }
