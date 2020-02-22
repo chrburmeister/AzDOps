@@ -28,11 +28,11 @@ Function New-AzDoProject {
         [Parameter(Mandatory = $false)][String]$APIVersion = "5.0-preview.3"
     )
 
-    if(-not($azDoConnectionStatus)){
+    if(-not($AzDOpsModuleConnectionStatus)){
         throw "No active Azure DevOps connection - use the 'Connect-AzDo' cmdlet to connect first"
     }
 
-    $uri = "$azDoBaseUrl/_apis/projects?api-version=$APIVersion"
+    $uri = "$AzDOpsModuleBaseUrl/_apis/projects?api-version=$APIVersion"
 
     try{
         $Templates = Get-AzDoProcesses -ErrorAction Stop
@@ -60,7 +60,7 @@ Function New-AzDoProject {
 
     $restParam = @{
         "URI" = $uri
-        "Headers" = $azDoAuthHeader
+        "Headers" = $AzDOpsModuleAuthHeader
         "Method" = "POST"
         "ContentType" = "application/json"
         "Body" = (ConvertTo-Json -InputObject $body)

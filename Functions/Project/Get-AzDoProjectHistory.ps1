@@ -14,15 +14,15 @@ Function Get-AzDoProjectHistory{
         [Parameter(Mandatory = $false)][String]$APIVersion = "5.0-preview.2"
     )
 
-    if(-not($azDoConnectionStatus)){
+    if(-not($AzDOpsModuleConnectionStatus)){
         throw "No active Azure DevOps connection - use the 'Connect-AzDo' cmdlet to connect first"
     }
 
-    $uri = "$azDoBaseUrl/_apis/projecthistory?api-version=$($APIVersion)"
+    $uri = "$AzDOpsModuleBaseUrl/_apis/projecthistory?api-version=$($APIVersion)"
 
     $restParam = @{
         "URI" = $uri
-        "Headers" = $azDoAuthHeader
+        "Headers" = $AzDOpsModuleAuthHeader
         "Method" = "GET"
         "ErrorAction" = "Stop"
     }

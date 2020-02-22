@@ -20,7 +20,7 @@ Function Remove-AzDoTeam{
         [Parameter(Mandatory = $false)][String]$APIVersion = "5.0-preview.2"
     )
 
-    if(-not($azDoConnectionStatus)){
+    if(-not($AzDOpsModuleConnectionStatus)){
         throw "No active Azure DevOps connection - use the 'Connect-AzDo' cmdlet to connect first"
     }
 
@@ -30,11 +30,11 @@ Function Remove-AzDoTeam{
         throw "could not find team $name"
     }
 
-    $uri = "$azDoBaseUrl/_apis/projects/$ProjectId/teams/$($teamId)?api-version=$APIVersion"
+    $uri = "$AzDOpsModuleBaseUrl/_apis/projects/$ProjectId/teams/$($teamId)?api-version=$APIVersion"
 
     $restParam = @{
         "URI" = $uri
-        "Headers" = $azDoAuthHeader
+        "Headers" = $AzDOpsModuleAuthHeader
         "Method" = "DELETE"
         "ContentType" = "application/json"
         "ErrorAction" = "Stop"
