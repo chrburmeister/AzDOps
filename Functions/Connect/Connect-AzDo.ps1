@@ -71,7 +71,7 @@ Function Connect-AzDo {
             ParameterSetName = "Credential",
             ValueFromPipeline
         )]
-        [PSCredential]$Credential #= (Get-Credential -UserName "PAT")
+        [PSCredential]$Credential
     )
 
     if ($PersonalAccessToken) {
