@@ -17,15 +17,15 @@ Function Get-AzDoGitRepository {
         [Parameter(Mandatory = $false)][String]$APIVersion = "5.0-preview.1"
     )
 
-    if(-not($azDoConnectionStatus)){
+    if(-not($AzDOpsModuleConnectionStatus)){
         throw "No active Azure DevOps connection - use the 'Connect-AzDo' cmdlet to connect first"
     }
 
-    $uri = "$azDoBaseUrl/$($ProjectId)/_apis/git/repositories?api-version=$APIVersion"
+    $uri = "$AzDOpsModuleBaseUrl/$($ProjectId)/_apis/git/repositories?api-version=$APIVersion"
 
     $restParam = @{
         "URI" = $uri
-        "Headers" = $azDoAuthHeader
+        "Headers" = $AzDOpsModuleAuthHeader
         "Method" = "GET"
         "ErrorAction" = "Stop"
     }

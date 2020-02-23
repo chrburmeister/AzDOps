@@ -14,15 +14,15 @@ Function Get-AzDoSecurityNamespace{
         [Parameter(Mandatory = $false)][String]$APIVersion = "1.0"
     )
 
-    if(-not($azDoConnectionStatus)){
+    if(-not($AzDOpsModuleConnectionStatus)){
         throw "No active Azure DevOps connection - use the 'Connect-AzDo' cmdlet to connect first"
     }
 
-    $uri = "$azDoBaseUrl/_apis/securitynamespaces/00000000-0000-0000-0000-000000000000/?api-version=$APIVersion"
+    $uri = "$AzDOpsModuleBaseUrl/_apis/securitynamespaces/00000000-0000-0000-0000-000000000000/?api-version=$APIVersion"
 
     $restParam = @{
         "URI" = $uri
-        "Headers" = $azDoAuthHeader
+        "Headers" = $AzDOpsModuleAuthHeader
         "Method" = "GET"
         "ErrorAction" = "Stop"
     }

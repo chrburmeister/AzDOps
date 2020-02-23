@@ -23,11 +23,11 @@ Function New-AzDoTeam{
         [Parameter(Mandatory = $false)][String]$APIVersion = "5.0-preview.2"
     )
 
-    if(-not($azDoConnectionStatus)){
+    if(-not($AzDOpsModuleConnectionStatus)){
         throw "No active Azure DevOps connection - use the 'Connect-AzDo' cmdlet to connect first"
     }
 
-    $uri = "$azDoBaseUrl/_apis/projects/$projectId/teams?api-version=$APIVersion"
+    $uri = "$AzDOpsModuleBaseUrl/_apis/projects/$projectId/teams?api-version=$APIVersion"
 
     $body = @{
         "name" = $name
@@ -36,7 +36,7 @@ Function New-AzDoTeam{
 
     $restParam = @{
         "URI" = $uri
-        "Headers" = $azDoAuthHeader
+        "Headers" = $AzDOpsModuleAuthHeader
         "Method" = "POST"
         "ContentType" = "application/json"
         "Body" = (ConvertTo-Json -InputObject $body)

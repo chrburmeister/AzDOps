@@ -20,11 +20,11 @@ Function New-AzDoGitRepository {
         [Parameter(Mandatory = $false)][String]$APIVersion = "5.0-preview.1"
     )
 
-    if(-not($azDoConnectionStatus)){
+    if(-not($AzDOpsModuleConnectionStatus)){
         throw "No active Azure DevOps connection - use the 'Connect-AzDo' cmdlet to connect first"
     }
 
-    $uri = "$azDoBaseUrl/$($ProjectId)/_apis/git/repositories/?api-version=$APIVersion"
+    $uri = "$AzDOpsModuleBaseUrl/$($ProjectId)/_apis/git/repositories/?api-version=$APIVersion"
 
     $body = @{
         "name" = $Name
@@ -35,7 +35,7 @@ Function New-AzDoGitRepository {
 
     $restParam = @{
         "URI" = $uri
-        "Headers" = $azDoAuthHeader
+        "Headers" = $AzDOpsModuleAuthHeader
         "Method" = "POST"
         "ContentType" = "application/json"
         "Body" = (ConvertTo-Json -InputObject $body)
